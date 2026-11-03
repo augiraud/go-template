@@ -12,9 +12,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"strconv"
 	"strings"
-	"time"
 	"unicode/utf8"
 )
 
@@ -67,13 +65,9 @@ func run() error {
 		}
 		return rewrite(path, func(text string) string {
 			text = replacer.Replace(text)
-			switch path {
-			case "sonar-project.properties":
+			if path == "sonar-project.properties" {
 				text = setProperty(text, "sonar.organization", strings.ToLower(owner))
 				text = setProperty(text, "sonar.projectKey", owner+"_"+name)
-			case "LICENSE":
-				text = regexp.MustCompile(`(?m)^Copyright \(c\) .*$`).
-					ReplaceAllString(text, "Copyright (c) "+strconv.Itoa(time.Now().Year())+" "+owner)
 			}
 			return text
 		})
