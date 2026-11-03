@@ -1,0 +1,8 @@
+# Only send what the image needs to Docker.
+*
+!go.mod
+!go.sum
+!**/*.go
+**/*_test.go
+scripts
+tools
