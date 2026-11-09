@@ -37,7 +37,7 @@ step "Vulnerabilities (govulncheck)" tool govulncheck ./...
 step "Release config (goreleaser)" tool goreleaser check --quiet
 step "Docker image" ./scripts/docker_build.sh
 
-if [ -n "$failed" ]; then
+if [[ -n "$failed" ]]; then
   echo "Failed:$failed"
   exit 1
 fi
