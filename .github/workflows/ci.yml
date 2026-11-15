@@ -50,7 +50,7 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #   run: |
       #     image="ghcr.io/$(echo "$GITHUB_REPOSITORY" | tr '[:upper:]' '[:lower:]')"
-      #     if [ "$GITHUB_REF_TYPE" = tag ]; then tag=$GITHUB_REF_NAME; else tag=latest; fi
+      #     if [[ "$GITHUB_REF_TYPE" == tag ]]; then tag=$GITHUB_REF_NAME; else tag=latest; fi
       #     echo "$GITHUB_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
       #     for t in "$tag" "$GITHUB_SHA"; do
       #       docker tag go-template "$image:$t"
